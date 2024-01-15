@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface GalleryItemProps {
@@ -5,12 +6,21 @@ interface GalleryItemProps {
 	caption: string;
 }
 
-const GalleryItem: React.FC<GalleryItemProps> = ({ imageUrl, caption }) => {
+const GalleryItem: React.FC<GalleryItemProps> = ({ imageUrl, caption,  }) => {
 	return (
-		<div className="max-w-xs rounded overflow-hidden shadow-lg">
-			<img className="w-full" src={imageUrl} alt={caption} />
-			<div className="px-6 py-4">
-				<div className="font-bold text-xl mb-2">{caption}</div>
+		<div className="w-60 h-60 relative object-contain max-w-xs rounded overflow-hidden m-2 hover:border-4 hover:border-solid transition-colors duration-200 ease-in-out">
+			<Image
+				src={imageUrl}
+				alt={caption}
+				layout="fill"
+				objectFit="cover"
+				quality={75}
+				loading="lazy"
+				className="rounded"
+			/>
+			<div className="absolute inset-0 bg-gray-500 opacity-50 rounded-md"></div>
+			<div className="absolute inset-0 flex flex-col flex-end justify-end p-2">
+				<p className="text-white text-2xl font-bold">{caption}</p>
 			</div>
 		</div>
 	);

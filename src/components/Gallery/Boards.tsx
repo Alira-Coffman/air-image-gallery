@@ -38,7 +38,7 @@ const Boards: React.FC = ({}) => {
 				leaveTo="opacity-0"
 			>
 				<div className="mt-4">
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+					<div className="m-4 flex flex-wrap justify-start">
 						{/* Gallery items go here */}
 						{data.data.map(
 							(board: { id: string; thumbnails: string[]; title: string }) => {
@@ -51,15 +51,6 @@ const Boards: React.FC = ({}) => {
 								);
 							}
 						)}
-
-						<GalleryItem
-							imageUrl="https://air-prod.imgix.net/8c8d0dcb-bc3f-4cee-8979-5018f5048e50.jpg"
-							caption="testPhoto"
-						/>
-						<GalleryItem
-							imageUrl="https://air-prod.imgix.net/8c8d0dcb-bc3f-4cee-8979-5018f5048e50.jpg"
-							caption="testPhoto"
-						/>
 					</div>
 				</div>
 			</Transition>
