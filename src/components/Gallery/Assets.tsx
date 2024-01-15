@@ -18,7 +18,7 @@ const Assets: React.FC<SectionProps> = ({
 	sectionCount,
 	images,
 }) => {
-	const [isOpen, setIsOpen] = useState<boolean>(true);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [cursor, setCursor] = useState<String | null>(null);
 
 	const { ref, inView } = useInView();
@@ -58,7 +58,7 @@ const Assets: React.FC<SectionProps> = ({
 							"x-air-board-context": "",
 						},
 						body: JSON.stringify({
-							limit: 72,
+							limit: 10,
 							type: "all",
 							withOpenDiscussionStatus: true,
 							filters: {
@@ -74,6 +74,7 @@ const Assets: React.FC<SectionProps> = ({
 
 				const data = await response.json();
 				console.log("assets", data);
+				setCursor(data.pagination.cursor);
 				return data;
 			} catch (error) {
 				console.error("Error:", error);
