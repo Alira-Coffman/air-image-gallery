@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
 import { IconArrowDown, IconArrowRight } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAssets } from "@/lib/fetchAssets";
 import AssetItem from "./AssetItem";
+import { useInView } from "react-intersection-observer";
 
 type SectionProps = {
 	sectionTitle: string;
@@ -17,7 +18,9 @@ const Assets: React.FC<SectionProps> = ({
 	sectionCount,
 	images,
 }) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
+
+	const { ref, inView } = useInView();
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ["assets"],
 		staleTime: 60 * 1000,
@@ -29,6 +32,12 @@ const Assets: React.FC<SectionProps> = ({
 			return assets;
 		},
 	});
+	useEffect(() => {
+		if (inView) {
+			// fetchNextPage();
+			console.log("load more");
+		}
+	}, [inView]);
 	if (isLoading) return <div>loading...</div>;
 	return (
 		<div className="display-block mb-10">
@@ -75,6 +84,9 @@ const Assets: React.FC<SectionProps> = ({
 								);
 							}
 						)}
+					</div>
+					<div ref={ref}>
+						<h2>{`Load more`}</h2>
 					</div>
 				</div>
 			</Transition>

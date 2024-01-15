@@ -1,4 +1,4 @@
-export const fetchAssets = async ({ cursor = null }) => {
+export const fetchAssets = async () => {
 	try {
 		const response = await fetch(
 			"https://api.air.inc/shorturl/bDkBvnzpB/clips/search",
@@ -31,7 +31,6 @@ export const fetchAssets = async ({ cursor = null }) => {
 					boardId: "c74bbbc8-602b-4c88-be71-9e21b36b0514",
 					sortField: { direction: "desc", name: "dateModified" },
 					descendantBoardId: "c74bbbc8-602b-4c88-be71-9e21b36b0514",
-					cursor: { cursor },
 				}),
 			}
 		);
