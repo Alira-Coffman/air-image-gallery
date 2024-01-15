@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { shimmer, toBase64 } from "./shimmer";
 
 interface AssetItemProps {
 	imageUrl: string;
@@ -35,6 +36,7 @@ const AssetItem: React.FC<AssetItemProps> = ({
 				quality={75}
 				loading="lazy"
 				className="rounded"
+				placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
 			/>
 			<div className="absolute inset-0 bg-gray-500 opacity-50 rounded-md"></div>
 			<div className="absolute inset-0 flex flex-col flex-end justify-end p-2">

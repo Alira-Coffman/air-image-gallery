@@ -58,7 +58,7 @@ const Assets: React.FC<SectionProps> = ({
 							"x-air-board-context": "",
 						},
 						body: JSON.stringify({
-							limit: 10,
+							limit: 40,
 							type: "all",
 							withOpenDiscussionStatus: true,
 							filters: {
@@ -92,6 +92,7 @@ const Assets: React.FC<SectionProps> = ({
 		}
 	}, [inView, fetchNextPage]);
 	// if (isLoading) return <div>loading...</div>;
+	if (status === "pending") return <div>loading...</div>;
 	return (
 		<div className="display-block mb-10">
 			<button onClick={() => setIsOpen(!isOpen)}>
@@ -140,7 +141,7 @@ const Assets: React.FC<SectionProps> = ({
 						})}
 					</div>
 					<div ref={ref}>
-						{!isFetchingNextPage ? (
+						{isFetchingNextPage && cursor != null && (
 							<div className="flex justify-start">
 								<div>
 									<svg
@@ -166,9 +167,8 @@ const Assets: React.FC<SectionProps> = ({
 								</div>
 								<p>Loading...</p>
 							</div>
-						) : (
-							<div>No more assets</div>
 						)}
+						{cursor == null && <div>No more assets</div>}
 					</div>
 				</div>
 			</Transition>
