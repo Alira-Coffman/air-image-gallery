@@ -6,13 +6,13 @@ interface GalleryItemProps {
 	caption: string;
 }
 
-const GalleryItem: React.FC<GalleryItemProps> = ({ imageUrl, caption,  }) => {
+const GalleryItem: React.FC<GalleryItemProps> = ({ imageUrl, caption }) => {
 	return (
 		<div className="w-60 h-60 relative object-contain max-w-xs rounded overflow-hidden m-2 hover:border-4 hover:border-solid transition-colors duration-200 ease-in-out">
 			<Image
 				src={imageUrl}
 				alt={caption}
-				layout="fill"
+				fill
 				objectFit="cover"
 				quality={75}
 				loading="lazy"
