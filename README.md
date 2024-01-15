@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Information to note
+
+For an optomized image gallery, the following things are concerns.
+
+- Image Loading: Loading _all_ images at once is resource-intensive. Lazy loading is an option to explore
+- Image Optomization: Its important to optimize images including sizing, compression, adjusting file formats, etc. Next/Image is a possible solution
+- Caching : Caching can assist in keeping load times down and avoid re-fetching those that have already been loaded.
+- Pagination or Infinite Scrolling: I'm going to go with Infinite Scrolling.
+- Thumbnails: Loading thumbnails at first can save space than loading full images
+
 ## Getting Started
 
 First, install the dependencies:
@@ -26,4 +36,5 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
 # air-image-gallery
