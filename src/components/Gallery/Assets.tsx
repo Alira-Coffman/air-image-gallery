@@ -88,6 +88,7 @@ const Assets: React.FC<SectionProps> = ({
 		if (inView) {
 			fetchNextPage();
 			console.log("load more");
+			console.log(status, isFetching, isFetchingNextPage);
 		}
 	}, [inView, fetchNextPage]);
 	// if (isLoading) return <div>loading...</div>;
@@ -99,7 +100,6 @@ const Assets: React.FC<SectionProps> = ({
 					{isOpen ? <IconArrowDown /> : <IconArrowRight />}
 				</p>
 			</button>
-
 			<Transition
 				show={isOpen}
 				enter="transition-opacity duration-300"
@@ -140,7 +140,35 @@ const Assets: React.FC<SectionProps> = ({
 						})}
 					</div>
 					<div ref={ref}>
-						<h2>{`Load more`}</h2>
+						{!isFetchingNextPage ? (
+							<div className="flex justify-start">
+								<div>
+									<svg
+										className="animate-spin -ml-1 mr-3 h-5 w-5 text-black text-3xl"
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+									>
+										<circle
+											className="opacity-25"
+											cx="12"
+											cy="12"
+											r="10"
+											stroke="currentColor"
+											stroke-width="4"
+										></circle>
+										<path
+											className="opacity-75"
+											fill="currentColor"
+											d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+										></path>
+									</svg>
+								</div>
+								<p>Loading...</p>
+							</div>
+						) : (
+							<div>No more assets</div>
+						)}
 					</div>
 				</div>
 			</Transition>
